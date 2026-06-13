@@ -1,35 +1,31 @@
-import java.util.ArrayList;
-
 public class Inventario {
 
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private String producto;
+    private int stock;
+    private String estado;
 
-    public void agregarProducto(Producto producto) {
-        productos.add(producto);
+    public Inventario(String producto,
+                      int stock,
+                      String estado) {
+
+        this.producto = producto;
+        this.stock = stock;
+        this.estado = estado;
     }
 
-    public ArrayList<Producto> obtenerProductos() {
-        return productos;
+    public String getProducto() {
+        return producto;
     }
 
-    public Producto buscarProducto(int id) {
-
-        for (Producto p : productos) {
-
-            if (p.getId() == id) {
-                return p;
-            }
-        }
-
-        return null;
+    public int getStock() {
+        return stock;
     }
 
-    public void eliminarProducto(int id) {
+    public String getEstado() {
+        return estado;
+    }
 
-        Producto producto = buscarProducto(id);
-
-        if (producto != null) {
-            productos.remove(producto);
-        }
+    public void actualizarStock(int nuevoStock) {
+        this.stock = nuevoStock;
     }
 }

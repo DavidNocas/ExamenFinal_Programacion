@@ -41,16 +41,4 @@ public class Producto {
     public String getTalla() {
         return talla;
     }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
 }
