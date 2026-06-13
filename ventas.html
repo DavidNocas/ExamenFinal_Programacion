@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventas</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+<div class="container">
+
+  <aside class="sidebar">
+
+    <div class="logo-container">
+
+        <div class="logo-circle">
+            ME
+        </div>
+
+        <div>
+            <h2>Moda Elite</h2>
+            <span>Fashion Management</span>
+        </div>
+
+    </div>
+
+    <nav class="menu">
+
+        <a href="index.html" class="active">
+            <span>🏠</span>
+            Dashboard
+        </a>
+
+        <a href="productos.html">
+            <span>👕</span>
+            Productos
+        </a>
+
+        <a href="inventario.html">
+            <span>📦</span>
+            Inventario
+        </a>
+
+        <a href="ventas.html">
+            <span>🛒</span>
+            Ventas
+        </a>
+
+        <a href="clientes.html">
+            <span>👥</span>
+            Clientes
+        </a>
+
+
+    </nav>
+
+    <div class="sidebar-footer">
+
+        <div class="user-card">
+
+            <div class="user-avatar">
+                A
+            </div>
+
+            <div>
+                <h4>Administrador</h4>
+                <span>Moda Elite</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
+
+    <main class="content">
+
+     <header>
+
+        <div>
+            <h1>Ventas</h1>
+            <p>Sistema de facturación y punto de venta</p>
+        </div>
+
+        <div class="header-right">
+
+            <div class="clock">
+                <h3 id="hora"></h3>
+                <p id="fecha"></p>
+            </div>
+
+        </div>
+
+    </header>
+
+    <section class="sales-layout">
+
+        <!-- PRODUCTOS -->
+
+        <div class="products-sale">
+
+            <div class="section-title">
+
+                <h2>Productos Disponibles</h2>
+
+                <input
+                    type="text"
+                    placeholder="Buscar producto..."
+                    class="sale-search"
+                >
+
+            </div>
+
+            <div class="products-grid-sale">
+
+                <div class="product-sale-card">
+
+                    <div class="product-sale-image">
+                        👕
+                    </div>
+
+                    <h4>Camiseta Oversize</h4>
+
+                    <p>$55.000</p>
+
+<button onclick="agregarProducto('Camiseta Oversize',55000)">
+    Agregar
+</button>
+                </div>
+
+                <div class="product-sale-card">
+
+                    <div class="product-sale-image">
+                        👖
+                    </div>
+
+                    <h4>Jean Slim Fit</h4>
+
+                    <p>$95.000</p>
+
+<button onclick="agregarProducto('Jean Slim Fit',95000)">
+    Agregar
+</button>
+
+                </div>
+
+                <div class="product-sale-card">
+
+                    <div class="product-sale-image">
+                        🧥
+                    </div>
+
+                    <h4>Hoodie Premium</h4>
+
+                    <p>$120.000</p>
+
+<button onclick="agregarProducto('Hoodie Premium',120000)">
+    Agregar
+</button>
+
+                </div>
+
+                <div class="product-sale-card">
+
+                    <div class="product-sale-image">
+                        👔
+                    </div>
+
+                    <h4>Camisa Formal</h4>
+
+                    <p>$85.000</p>
+
+<button onclick="agregarProducto('Camisa Formal',85000)">
+    Agregar
+</button>
+
+                </div>
+
+            </div>
+
+               <!-- ÚLTIMAS VENTAS -->
+
+    <section class="recent-sales">
+
+        <div class="section-title-sales">
+
+            <h2>Últimas Ventas</h2>
+
+<button class="btn-primary"
+        onclick="verVentas()">
+    Ver Todas
+</button>
+
+        </div>
+
+        <div class="recent-sale">
+
+            <div>
+
+                <strong>Factura #1001</strong>
+
+                <p>12/06/2026 - 10:15 AM</p>
+
+            </div>
+
+            <h3>$120.000</h3>
+
+        </div>
+
+        <div class="recent-sale">
+
+            <div>
+
+                <strong>Factura #1002</strong>
+
+                <p>12/06/2026 - 11:40 AM</p>
+
+            </div>
+
+            <h3>$95.000</h3>
+
+        </div>
+
+    </section>
+
+        </div>
+
+        <!-- RESUMEN -->
+
+        <div class="cart-panel">
+
+            <h2>Resumen de Venta</h2>
+
+            <div class="sale-info">
+
+                <div class="info-box">
+                    <span>Cliente</span>
+                    <strong>David Noriega</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Método</span>
+                    <strong>Efectivo</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Cajero</span>
+                    <strong>Admin</strong>
+                </div>
+
+            </div>
+
+<div id="carrito">
+
+</div>
+
+            <div class="totals">
+
+                <div class="total-row">
+                    <span>Subtotal</span>
+                    <strong id="subtotal">$0</strong>
+                </div>
+
+                <div class="total-row">
+                    <span>IVA (19%)</span>
+                    <strong id="iva">$0</strong>
+                </div>
+
+                <div class="total-row final">
+                    <span>Total</span>
+                    <strong id="total">$0</strong>
+                </div>
+
+            </div>
+
+            <div class="sale-actions">
+
+                <button class="btn-cancel">
+                    Cancelar
+                </button>
+
+                <button class="checkout-btn">
+                    Finalizar Venta
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+        <script>
+
+let subtotal = 0;
+
+function agregarProducto(nombre, precio){
+
+    let carrito = document.getElementById("carrito");
+
+    carrito.innerHTML += `
+        <div class="cart-item">
+            <span>${nombre}</span>
+            <strong>$${precio.toLocaleString()}</strong>
+        </div>
+    `;
+
+    subtotal += precio;
+
+    actualizarTotales();
+}
+
+function actualizarTotales(){
+
+    let iva = subtotal * 0.19;
+    let total = subtotal + iva;
+
+    document.getElementById("subtotal").innerText =
+        "$" + subtotal.toLocaleString();
+
+    document.getElementById("iva").innerText =
+        "$" + iva.toLocaleString();
+
+    document.getElementById("total").innerText =
+        "$" + total.toLocaleString();
+}
+
+function abrirModalVenta(){
+
+    document.getElementById("modalVenta")
+        .style.display = "block";
+}
+
+function cerrarModalVenta(){
+
+    document.getElementById("modalVenta")
+        .style.display = "none";
+}
+
+function guardarVenta(){
+
+    alert("Venta registrada correctamente");
+
+    cerrarModalVenta();
+
+    setTimeout(() => {
+        location.reload();
+    }, 500);
+
+}
+
+function verVentas(){
+
+    document.getElementById("modalVentas")
+        .style.display = "block";
+}
+
+function cerrarModalVentas(){
+
+    document.getElementById("modalVentas")
+        .style.display = "none";
+}
+
+document.querySelector(".checkout-btn")
+.addEventListener("click", abrirModalVenta);
+
+document.querySelector(".btn-cancel")
+.addEventListener("click", function(){
+
+    document.getElementById("carrito").innerHTML = "";
+
+    subtotal = 0;
+
+    actualizarTotales();
+
+});
+
+</script>
+
+<div id="modalVentas" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close"
+              onclick="cerrarModalVentas()">
+            &times;
+        </span>
+
+        <h2>Últimas Ventas</h2>
+
+        <div class="venta-item">
+
+            <strong>Factura #1001</strong>
+
+            <p>12/06/2026 - 10:15 AM</p>
+
+            <h4>$120.000</h4>
+
+        </div>
+
+        <div class="venta-item">
+
+            <strong>Factura #1002</strong>
+
+            <p>12/06/2026 - 11:40 AM</p>
+
+            <h4>$95.000</h4>
+
+        </div>
+
+        <div class="venta-item">
+
+            <strong>Factura #1003</strong>
+
+            <p>13/06/2026 - 03:20 PM</p>
+
+            <h4>$205.000</h4>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="modalVenta" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close"
+              onclick="cerrarModalVenta()">
+            &times;
+        </span>
+
+        <h2>Finalizar Venta</h2>
+
+        <input
+            type="text"
+            id="cliente"
+            placeholder="Nombre del cliente">
+
+        <select id="metodoPago">
+
+            <option>Efectivo</option>
+            <option>Tarjeta</option>
+            <option>Transferencia</option>
+
+        </select>
+
+        <button class="btn-primary"
+                onclick="guardarVenta()">
+            Confirmar Venta
+        </button>
+
+    </div>
+
+</div>
+
+<div id="modalVenta" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close"
+              onclick="cerrarModalVenta()">
+            &times;
+        </span>
+
+        <h2>Finalizar Venta</h2>
+
+        <input type="text"
+               id="cliente"
+               placeholder="Nombre del cliente">
+
+        <select id="metodoPago">
+
+            <option>Efectivo</option>
+            <option>Tarjeta</option>
+            <option>Transferencia</option>
+
+        </select>
+
+        <button class="btn-primary"
+                onclick="guardarVenta()">
+            Confirmar Venta
+        </button>
+
+    </div>
+
+</div>
+    
+</body>
+</html>

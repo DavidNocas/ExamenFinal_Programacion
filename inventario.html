@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+<div class="container">
+
+  <aside class="sidebar">
+
+    <div class="logo-container">
+
+        <div class="logo-circle">
+            ME
+        </div>
+
+        <div>
+            <h2>Moda Elite</h2>
+            <span>Fashion Management</span>
+        </div>
+
+    </div>
+
+    <nav class="menu">
+
+        <a href="index.html" class="active">
+            <span>🏠</span>
+            Dashboard
+        </a>
+
+        <a href="productos.html">
+            <span>👕</span>
+            Productos
+        </a>
+
+        <a href="inventario.html">
+            <span>📦</span>
+            Inventario
+        </a>
+
+        <a href="ventas.html">
+            <span>🛒</span>
+            Ventas
+        </a>
+
+        <a href="clientes.html">
+            <span>👥</span>
+            Clientes
+        </a>
+
+
+    </nav>
+
+    <div class="sidebar-footer">
+
+        <div class="user-card">
+
+            <div class="user-avatar">
+                A
+            </div>
+
+            <div>
+                <h4>Administrador</h4>
+                <span>Moda Elite</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
+
+    <main class="content">
+
+      <header>
+
+    <div>
+        <h1>Inventario</h1>
+        <p>Control y seguimiento de existencias</p>
+    </div>
+
+    <button class="btn-card"
+            onclick="actualizarStock()">
+        Actualizar Stock
+    </button>
+
+
+</header>
+
+<section class="inventory-stats">
+
+    <div class="stat-card">
+        <h3>Total Productos</h3>
+        <h2>120</h2>
+    </div>
+
+    <div class="stat-card">
+        <h3>Stock Bajo</h3>
+        <h2>8</h2>
+    </div>
+
+    <div class="stat-card">
+        <h3>Sin Existencias</h3>
+        <h2>2</h2>
+    </div>
+
+</section>
+
+<section class="inventory-table">
+
+    <div class="table-toolbar">
+
+        <div>
+            <h2>Inventario General</h2>
+            <p>Control de existencias</p>
+        </div>
+
+        <input
+            type="text"
+            placeholder="Buscar producto..."
+            class="table-search"
+        >
+
+    </div>
+
+    <table>
+
+        <thead>
+
+                <tr>
+
+                    <th>Producto</th>
+                    <th>Categoría</th>
+                    <th>Talla</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+
+                </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+
+                <td>
+
+                    <div class="product-cell">
+
+                        <div class="product-avatar">
+                            👕
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Camiseta Oversize
+                            </strong>
+
+                            <small>
+                                REF-001
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+                <td>Camisetas</td>
+
+                <td>M</td>
+
+                <td>20</td>
+
+                <td>
+                    <span class="status available">
+                        Disponible
+                    </span>
+                </td>
+
+                <td>
+<button class="btn-card"
+        onclick="abrirModalInventario(this)">
+    Editar
+</button>
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    <div class="product-cell">
+
+                        <div class="product-avatar">
+                            👖
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Jean Slim Fit
+                            </strong>
+
+                            <small>
+                                REF-002
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+                <td>Pantalones</td>
+
+                <td>32</td>
+
+                <td>8</td>
+
+                <td>
+                    <span class="status low-stock">
+                        Stock Bajo
+                    </span>
+                </td>
+
+                <td>
+<button class="btn-card"
+        onclick="abrirModalInventario(this)">
+    Editar
+</button>   
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</section>
+
+<script>
+
+let filaActual = null;
+
+function abrirModalInventario(boton){
+
+    filaActual = boton.closest("tr");
+
+    document.getElementById("editNombre").value =
+        filaActual.cells[0].querySelector("strong").innerText;
+
+    document.getElementById("editTalla").value =
+        filaActual.cells[2].innerText;
+
+    document.getElementById("modalInventario").style.display = "block";
+}
+
+function cerrarModalInventario(){
+    document.getElementById("modalInventario").style.display = "none";
+}
+
+function guardarEdicionInventario(){
+
+    let nombre =
+        document.getElementById("editNombre").value;
+
+    let stock =
+        document.getElementById("editStock").value;
+
+    let talla =
+        document.getElementById("editTalla").value;
+
+    filaActual.cells[0].querySelector("strong").innerText = nombre;
+
+    filaActual.cells[3].innerText = stock;
+
+    filaActual.cells[2].innerText = talla;
+
+    if(stock <= 0){
+
+        filaActual.cells[4].innerHTML =
+        '<span class="status out-stock">Sin Existencias</span>';
+
+    }else if(stock <= 10){
+
+        filaActual.cells[4].innerHTML =
+        '<span class="status low-stock">Stock Bajo</span>';
+
+    }else{
+
+        filaActual.cells[4].innerHTML =
+        '<span class="status available">Disponible</span>';
+    }
+
+    cerrarModalInventario();
+}
+
+</script>
+
+<script>
+
+function actualizarStock(){
+
+    document.getElementById("modalStock")
+        .style.display = "block";
+}
+
+function cerrarModalStock(){
+
+    document.getElementById("modalStock")
+        .style.display = "none";
+}
+
+function guardarStock(){
+
+    let nuevoStock =
+        document.getElementById("nuevoStock").value;
+
+    alert(
+        "Stock actualizado a: " +
+        nuevoStock
+    );
+
+    cerrarModalStock();
+}
+
+</script>
+
+<div id="modalStock" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="cerrarModalStock()">
+            &times;
+        </span>
+
+        <h2>Actualizar Stock</h2>
+
+        <input
+            type="number"
+            id="nuevoStock"
+            placeholder="Ingrese el nuevo stock"
+        >
+
+        <button class="btn-primary"
+                onclick="guardarStock()">
+            Guardar
+        </button>
+
+    </div>
+
+</div>
+
+<div id="modalInventario" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close"
+              onclick="cerrarModalInventario()">
+            &times;
+        </span>
+
+        <h2>Editar Inventario</h2>
+
+        <input type="text"
+               id="editNombre"
+               placeholder="Nombre del producto">
+
+        <input type="number"
+               id="editStock"
+               placeholder="Stock">
+
+            <input type="text"
+               id="editTalla"
+               placeholder="Talla">
+
+
+        <button class="btn-primary"
+                onclick="guardarEdicionInventario()">
+            Guardar
+        </button>
+
+    </div>
+
+</div>
+
+</body>
+</html>

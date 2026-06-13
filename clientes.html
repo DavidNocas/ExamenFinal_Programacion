@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+<div class="container">
+
+  <aside class="sidebar">
+
+    <div class="logo-container">
+
+        <div class="logo-circle">
+            ME
+        </div>
+
+        <div>
+            <h2>Moda Elite</h2>
+            <span>Fashion Management</span>
+        </div>
+
+    </div>
+
+    <nav class="menu">
+
+        <a href="index.html" class="active">
+            <span>🏠</span>
+            Dashboard
+        </a>
+
+        <a href="productos.html">
+            <span>👕</span>
+            Productos
+        </a>
+
+        <a href="inventario.html">
+            <span>📦</span>
+            Inventario
+        </a>
+
+        <a href="ventas.html">
+            <span>🛒</span>
+            Ventas
+        </a>
+
+        <a href="clientes.html">
+            <span>👥</span>
+            Clientes
+        </a>
+
+
+    </nav>
+
+    <div class="sidebar-footer">
+
+        <div class="user-card">
+
+            <div class="user-avatar">
+                A
+            </div>
+
+            <div>
+                <h4>Administrador</h4>
+                <span>Moda Elite</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
+
+    <main class="content">
+
+<header>
+
+    <div>
+        <h1>Clientes</h1>
+        <p>Gestión de clientes registrados</p>
+    </div>
+
+<button class="btn-primary"
+        onclick="abrirModalCliente()">
+    + Nuevo Cliente
+</button>
+
+</header>
+
+<section class="client-stats">
+
+    <div class="client-stat-card">
+        <h3>Total Clientes</h3>
+        <h2>245</h2>
+    </div>
+
+    <div class="client-stat-card">
+        <h3>Clientes VIP</h3>
+        <h2>42</h2>
+    </div>
+
+    <div class="client-stat-card">
+        <h3>Nuevos este mes</h3>
+        <h2>18</h2>
+    </div>
+
+</section>
+
+
+
+<section class="clients-grid">
+
+    <div class="client-card">
+
+        <div class="client-avatar">
+            DN
+        </div>
+
+        <h3>David Noriega</h3>
+
+        <p>Cliente VIP</p>
+
+        <div class="client-info">
+
+            <span>📞 300 123 4567</span>
+
+            <span>📧 david@email.com</span>
+
+        </div>
+
+        <button class="client-btn">
+            Ver Perfil
+        </button>
+
+    </div>
+
+    <div class="client-card">
+
+        <div class="client-avatar">
+            CM
+        </div>
+
+        <h3>Carlos Martínez</h3>
+
+        <p>Cliente Frecuente</p>
+
+        <div class="client-info">
+
+            <span>📞 315 456 7890</span>
+
+            <span>📧 carlos@email.com</span>
+
+        </div>
+
+        <button class="client-btn">
+            Ver Perfil
+        </button>
+
+    </div>
+
+    <div class="client-card">
+
+        <div class="client-avatar">
+            LP
+        </div>
+
+        <h3>Laura Pérez</h3>
+
+        <p>Cliente VIP</p>
+
+        <div class="client-info">
+
+            <span>📞 311 999 8888</span>
+
+            <span>📧 laura@email.com</span>
+
+        </div>
+
+        <button class="client-btn">
+            Ver Perfil
+        </button>
+
+    </div>
+
+    <div id="nuevosClientes"></div>
+
+</section>
+
+
+<script>
+
+function abrirModalCliente(){
+
+    document.getElementById("modalCliente")
+        .style.display = "block";
+}
+
+function cerrarModalCliente(){
+
+    document.getElementById("modalCliente")
+        .style.display = "none";
+}
+
+function guardarCliente(){
+
+    let nombre =
+        document.getElementById("nombreCliente").value;
+
+    let telefono =
+        document.getElementById("telefonoCliente").value;
+
+    let correo =
+        document.getElementById("correoCliente").value;
+
+    let iniciales = nombre
+        .split(" ")
+        .map(p => p[0])
+        .join("")
+        .toUpperCase();
+
+    document.getElementById("nuevosClientes")
+        .innerHTML += `
+        <div class="client-card">
+
+            <div class="client-avatar">
+                ${iniciales}
+            </div>
+
+            <h3>${nombre}</h3>
+
+            <p>Cliente Nuevo</p>
+
+            <div class="client-info">
+
+                <span>📞 ${telefono}</span>
+
+                <span>📧 ${correo}</span>
+
+            </div>
+
+            <button class="client-btn">
+                Ver Perfil
+            </button>
+
+        </div>
+    `;
+
+    cerrarModalCliente();
+}
+
+</script>
+
+<div id="modalCliente" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close"
+              onclick="cerrarModalCliente()">
+            &times;
+        </span>
+
+        <h2>Nuevo Cliente</h2>
+
+        <input type="text"
+               id="nombreCliente"
+               placeholder="Nombre">
+
+        <input type="text"
+               id="telefonoCliente"
+               placeholder="Teléfono">
+
+        <input type="email"
+               id="correoCliente"
+               placeholder="Correo">
+
+        <button class="btn-primary"
+                onclick="guardarCliente()">
+            Guardar Cliente
+        </button>
+
+    </div>
+
+</div>
+</body>
+</html>

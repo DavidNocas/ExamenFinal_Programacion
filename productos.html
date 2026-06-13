@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+<div class="container">
+
+  <aside class="sidebar">
+
+    <div class="logo-container">
+
+        <div class="logo-circle">
+            ME
+        </div>
+
+        <div>
+            <h2>Moda Elite</h2>
+            <span>Fashion Management</span>
+        </div>
+
+    </div>
+
+    <nav class="menu">
+
+        <a href="index.html" class="active">
+            <span>🏠</span>
+            Dashboard
+        </a>
+
+        <a href="productos.html">
+            <span>👕</span>
+            Productos
+        </a>
+
+        <a href="inventario.html">
+            <span>📦</span>
+            Inventario
+        </a>
+
+        <a href="ventas.html">
+            <span>🛒</span>
+            Ventas
+        </a>
+
+        <a href="clientes.html">
+            <span>👥</span>
+            Clientes
+        </a>
+
+
+    </nav>
+
+    <div class="sidebar-footer">
+
+        <div class="user-card">
+
+            <div class="user-avatar">
+                A
+            </div>
+
+            <div>
+                <h4>Administrador</h4>
+                <span>Moda Elite</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
+
+    <main class="content">
+
+        <header>
+
+    <div>
+        <h1>Productos</h1>
+        <p>Gestiona el catálogo de Moda Elite</p>
+    </div>
+
+<button class="btn-primary" onclick="abrirModal()">
+    + Nuevo Producto
+</button>
+
+</header>
+
+<div class="top-bar">
+
+    <input
+        type="text"
+        placeholder="Buscar productos..."
+        class="search-input"
+    >
+
+    <select class="filter-select">
+        <option>Todas las categorías</option>
+        <option>Camisetas</option>
+        <option>Pantalones</option>
+        <option>Chaquetas</option>
+    </select>
+
+</div>
+
+<section class="products-grid">
+
+    <div class="product-card">
+
+        <div class="product-image">
+            👕
+        </div>
+
+        <div class="product-content">
+
+            <h3>Camiseta Oversize</h3>
+
+            <p class="category">
+                Camisetas
+            </p>
+
+            <h2>$55.000</h2>
+
+            <div class="product-details">
+
+                <span>Stock: 20</span>
+
+                <span>Talla M</span>
+
+            </div>
+
+<div class="acciones">
+    <button class="btn-card" onclick="abrirModalEditar(this)">
+        Editar
+    </button>
+
+    <button class="btn-card eliminar"
+            onclick="eliminarProducto(this)">
+        Eliminar
+    </button>
+</div>
+
+        </div>
+
+    </div>
+
+    <div class="product-card">
+
+        <div class="product-image">
+            👖
+        </div>
+
+        <div class="product-content">
+
+            <h3>Jean Slim Fit</h3>
+
+            <p class="category">
+                Pantalones
+            </p>
+
+            <h2>$95.000</h2>
+
+            <div class="product-details">
+
+                <span>Stock: 10</span>
+
+                <span>Talla 32</span>
+
+            </div>
+
+<div class="acciones">
+    <button class="btn-card" onclick="abrirModalEditar(this)">
+        Editar
+    </button>
+
+    <button class="btn-card eliminar"
+            onclick="eliminarProducto(this)">
+        Eliminar
+    </button>
+</div>
+
+        </div>
+
+    </div>
+
+    <div class="product-card">
+
+        <div class="product-image">
+            🧥
+        </div>
+
+        <div class="product-content">
+
+            <h3>Hoodie Premium</h3>
+
+            <p class="category">
+                Chaquetas
+            </p>
+
+            <h2>$120.000</h2>
+
+            <div class="product-details">
+
+                <span>Stock: 5</span>
+
+                <span>Talla L</span>
+
+            </div>
+
+<div class="acciones">
+    <button class="btn-card" onclick="abrirModalEditar(this)">
+        Editar
+    </button>
+
+    <button class="btn-card eliminar"
+            onclick="eliminarProducto(this)">
+        Eliminar
+    </button>
+</div>
+
+        </div>
+
+    </div>
+
+    <div class="product-card">
+
+        <div class="product-image">
+            👔
+        </div>
+
+        <div class="product-content">
+
+            <h3>Camisa Formal</h3>
+
+            <p class="category">
+                Camisas
+            </p>
+
+            <h2>$85.000</h2>
+
+            <div class="product-details">
+
+                <span>Stock: 15</span>
+
+                <span>Talla M</span>
+
+            </div>
+
+<div class="acciones">
+    <button class="btn-card" onclick="abrirModalEditar(this)">
+        Editar
+    </button>
+
+    <button class="btn-card eliminar"
+            onclick="eliminarProducto(this)">
+        Eliminar
+    </button>
+</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+
+function abrirModal(){
+    document.getElementById("modalProducto").style.display = "block";
+}
+
+function cerrarModal(){
+    document.getElementById("modalProducto").style.display = "none";
+}
+
+function agregarProducto(){
+
+    let nombre = document.getElementById("nombre").value;
+    let categoria = document.getElementById("categoria").value;
+    let precio = document.getElementById("precio").value;
+    let stock = document.getElementById("stock").value;
+    let talla = document.getElementById("talla").value;
+
+    let contenedor = document.querySelector(".products-grid");
+
+    contenedor.innerHTML += `
+        <div class="product-card">
+            <div class="product-image">👕</div>
+
+            <div class="product-content">
+
+                <h3>${nombre}</h3>
+
+                <p class="category">${categoria}</p>
+
+                <h2>$${precio}</h2>
+
+                <div class="product-details">
+                    <span>Stock: ${stock}</span>
+                    <span>Talla ${talla}</span>
+                </div>
+
+                <button class="btn-card">
+                    Editar
+                </button>
+
+            </div>
+        </div>
+    `;
+
+    document.getElementById("formProducto").reset();
+    cerrarModal();
+}
+
+</script>
+
+<script>
+
+    function eliminarProducto(boton){
+
+    if(confirm("¿Desea eliminar este producto?")){
+
+        boton.closest(".product-card").remove();
+
+    }
+}
+
+let tarjetaActual = null;
+
+function abrirModalEditar(boton){
+
+    tarjetaActual = boton.closest(".product-card");
+
+    document.getElementById("editNombre").value =
+        tarjetaActual.querySelector("h3").innerText;
+
+    document.getElementById("editCategoria").value =
+        tarjetaActual.querySelector(".category").innerText;
+
+    document.getElementById("editPrecio").value =
+        tarjetaActual.querySelector("h2")
+        .innerText.replace("$","")
+        .replace(".","");
+
+    document.getElementById("editStock").value =
+        tarjetaActual.querySelectorAll(".product-details span")[0]
+        .innerText.replace("Stock: ","");
+
+    document.getElementById("editTalla").value =
+        tarjetaActual.querySelectorAll(".product-details span")[1]
+        .innerText.replace("Talla ","");
+
+    document.getElementById("modalEditar").style.display = "block";
+}
+
+function cerrarModalEditar(){
+    document.getElementById("modalEditar").style.display = "none";
+}
+
+function guardarEdicion(){
+
+    let nombre = document.getElementById("editNombre").value;
+    let categoria = document.getElementById("editCategoria").value;
+    let precio = document.getElementById("editPrecio").value;
+    let stock = document.getElementById("editStock").value;
+    let talla = document.getElementById("editTalla").value;
+
+    tarjetaActual.querySelector("h3").innerText = nombre;
+
+    tarjetaActual.querySelector(".category").innerText = categoria;
+
+    tarjetaActual.querySelector("h2").innerText = "$" + precio;
+
+    tarjetaActual.querySelectorAll(".product-details span")[0]
+        .innerText = "Stock: " + stock;
+
+    tarjetaActual.querySelectorAll(".product-details span")[1]
+        .innerText = "Talla " + talla;
+
+    cerrarModalEditar();
+}
+
+</script>
+
+<div id="modalEditar" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="cerrarModalEditar()">&times;</span>
+
+        <h2>Editar Producto</h2>
+
+        <input type="text" id="editNombre">
+
+        <input type="text" id="editCategoria">
+
+        <input type="number" id="editPrecio">
+
+        <input type="number" id="editStock">
+
+        <input type="text" id="editTalla">
+
+        <button onclick="guardarEdicion()">
+            Guardar Cambios
+        </button>
+
+    </div>
+
+</div>
+
+<div id="modalProducto" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="cerrarModal()">&times;</span>
+
+        <h2>Nuevo Producto</h2>
+
+        <form id="formProducto">
+
+            <input type="text" id="nombre" placeholder="Nombre" required>
+
+            <input type="text" id="categoria" placeholder="Categoría" required>
+
+            <input type="number" id="precio" placeholder="Precio" required>
+
+            <input type="number" id="stock" placeholder="Stock" required>
+
+            <input type="text" id="talla" placeholder="Talla" required>
+
+            <button type="button" onclick="agregarProducto()">
+                Guardar
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+</body>
+</html>
